@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style 02 · Luxe Noir 高级黑金</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-alt: #141210;
+    --ink: #f5f0e6;
+    --muted: #8a8478;
+    --gold: #c9a961;
+    --gold-bright: #e4c98a;
+    --line: #2a2720;
+    --serif: "Playfair Display", "Noto Serif SC", Georgia, serif;
+    --sans: "Montserrat", -apple-system, "PingFang SC", sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+
+  .backbar { background: var(--gold); color: #0a0a0a; padding: 10px 40px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; display:flex; justify-content: space-between; }
+  .backbar a { font-weight: 600; }
+
+  header { border-bottom: 1px solid var(--line); padding: 28px 48px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; position: sticky; top:0; background: rgba(10,10,10,0.95); backdrop-filter: blur(10px); z-index: 10; }
+  nav { justify-self: start; }
+  nav ul { list-style: none; display: flex; gap: 40px; }
+  nav a { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); font-weight: 400; transition: color .3s; }
+  nav a:hover { color: var(--gold); }
+  .logo { font-family: var(--serif); font-size: 30px; font-weight: 500; letter-spacing: 0.15em; color: var(--gold); text-transform: uppercase; }
+  .icons { justify-self: end; display:flex; gap: 26px; font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--muted); }
+  .icons span { cursor: pointer; transition: color .3s; }
+  .icons span:hover { color: var(--gold); }
+
+  .hero { position: relative; min-height: 82vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 40px; background: radial-gradient(ellipse at center, #1f1a10 0%, #0a0a0a 70%); overflow: hidden; }
+  .hero::before { content:""; position:absolute; inset:0; background: radial-gradient(circle at 30% 40%, rgba(201,169,97,0.12), transparent 50%), radial-gradient(circle at 70% 60%, rgba(201,169,97,0.08), transparent 50%); }
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+  .hero .eyebrow { font-size: 11px; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); margin-bottom: 36px; }
+  .hero h1 { font-family: var(--serif); font-size: clamp(56px, 9vw, 128px); font-weight: 400; line-height: 1; letter-spacing: -0.01em; margin-bottom: 40px; }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero p { font-size: 15px; line-height: 1.9; color: var(--muted); max-width: 520px; margin: 0 auto 48px; letter-spacing: 0.02em; }
+  .btn { display: inline-block; padding: 20px 52px; background: var(--gold); color: #0a0a0a; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 600; transition: all .3s; }
+  .btn:hover { background: var(--gold-bright); transform: translateY(-2px); }
+  .btn.ghost { background: transparent; color: var(--gold); border: 1px solid var(--gold); margin-left: 12px; }
+  .btn.ghost:hover { background: var(--gold); color: #0a0a0a; }
+
+  section { padding: 140px 40px; max-width: 1440px; margin: 0 auto; }
+  .section-head { text-align: center; margin-bottom: 80px; }
+  .section-head .eyebrow { font-size: 10px; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .section-head h2 { font-family: var(--serif); font-size: 56px; font-weight: 400; letter-spacing: -0.01em; }
+  .section-head h2 em { font-style: italic; color: var(--gold); }
+
+  .products { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+  .product { cursor: pointer; }
+  .product .img { aspect-ratio: 3/4; background: var(--bg-alt); margin-bottom: 24px; overflow: hidden; position: relative; border: 1px solid var(--line); transition: border-color .4s; }
+  .product:hover .img { border-color: var(--gold); }
+  .product .img::after { content:"Product Photo"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#555; font-family: var(--serif); font-style: italic; font-size: 14px; }
+  .product .p1 { background: radial-gradient(ellipse at center, #2a2218 0%, #0f0d08 100%); }
+  .product .p2 { background: radial-gradient(ellipse at center, #1f1b12 0%, #0a0a0a 100%); }
+  .product .p3 { background: radial-gradient(ellipse at center, #25201a 0%, #0c0a06 100%); }
+  .product .p4 { background: radial-gradient(ellipse at center, #1a1712 0%, #080806 100%); }
+  .product .name { font-family: var(--serif); font-size: 22px; font-weight: 400; margin-bottom: 8px; }
+  .product .price { font-size: 13px; color: var(--gold); letter-spacing: 0.15em; }
+
+  .feature { background: var(--bg-alt); padding: 140px 40px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .feature-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+  .feature img, .feature .img-box { aspect-ratio: 4/5; background: linear-gradient(135deg,#2a2218,#0f0d08); border: 1px solid var(--gold); }
+  .feature h3 { font-family: var(--serif); font-size: 48px; font-weight: 400; line-height: 1.15; margin-bottom: 28px; }
+  .feature h3 em { font-style: italic; color: var(--gold); }
+  .feature p { font-size: 15px; line-height: 1.9; color: var(--muted); margin-bottom: 36px; }
+
+  .usp-grid { max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); }
+  .usp-item { background: var(--bg); padding: 48px 32px; text-align: center; }
+  .usp-item .icon { font-family: var(--serif); font-size: 36px; color: var(--gold); margin-bottom: 16px; }
+  .usp-item h4 { font-family: var(--serif); font-size: 18px; font-weight: 500; margin-bottom: 10px; letter-spacing: 0.05em; }
+  .usp-item p { font-size: 12px; color: var(--muted); line-height: 1.7; letter-spacing: 0.05em; }
+
+  footer { background: #050505; color: var(--muted); padding: 100px 40px 32px; border-top: 1px solid var(--line); }
+  .f-grid { max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 80px; padding-bottom: 60px; border-bottom: 1px solid var(--line); }
+  footer .logo { margin-bottom: 24px; }
+  footer p { font-size: 13px; line-height: 1.9; max-width: 340px; }
+  footer h5 { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 12px; }
+  footer a { font-size: 13px; transition: color .3s; }
+  footer a:hover { color: var(--gold); }
+  .copy { max-width: 1440px; margin: 0 auto; padding-top: 32px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; opacity: .6; }
+
+  @media (max-width: 900px) {
+    header { grid-template-columns: 1fr 1fr; }
+    nav { display: none; }
+    .products { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .usp-grid { grid-template-columns: repeat(2, 1fr); }
+    .f-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .feature-inner { grid-template-columns: 1fr; gap: 48px; }
+    section { padding: 80px 24px; }
+    .feature { padding: 80px 24px; }
+    header { padding: 20px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="backbar"><a href="./index.html">← Back to directions</a><span>Style 02 · Luxe Noir</span></div>
+
+<header>
+  <nav>
+    <ul>
+      <li><a href="#">Collections</a></li>
+      <li><a href="#">Atelier</a></li>
+      <li><a href="#">Journal</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="logo">Noir</div>
+  <div class="icons"><span>Search</span><span>Account</span><span>Bag · 0</span></div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">Maison Privée · Autumn 2026</div>
+    <h1>The art of<br><em>quiet</em> luxury.</h1>
+    <p>Crafted in limited editions by a handful of artisans we trust. Each piece carries the silence of the room it was made in.</p>
+    <a href="#" class="btn">Discover the collection</a>
+    <a href="#" class="btn ghost">Book a private viewing</a>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <div class="eyebrow">Maison Signatures</div>
+    <h2>Timeless, by <em>design</em></h2>
+  </div>
+  <div class="products">
+    <div class="product"><div class="img p1"></div><div class="name">Onyx Tourbillon</div><div class="price">¥ 48,800</div></div>
+    <div class="product"><div class="img p2"></div><div class="name">Signet · 18K Gold</div><div class="price">¥ 12,600</div></div>
+    <div class="product"><div class="img p3"></div><div class="name">Noir Parfum 100ml</div><div class="price">¥ 2,380</div></div>
+    <div class="product"><div class="img p4"></div><div class="name">Silk Foulard</div><div class="price">¥ 3,900</div></div>
+  </div>
+</section>
+
+<section class="feature">
+  <div class="feature-inner">
+    <div class="img-box"></div>
+    <div>
+      <div class="section-head" style="text-align:left; margin-bottom:0;">
+        <div class="eyebrow" style="margin-bottom:16px;">Atelier Story</div>
+      </div>
+      <h3>A <em>century</em> of patience,<br>captured in one piece.</h3>
+      <p>从巴黎第八区的一间木质工坊，到今天全球 12 位严选匠人的协作。每一件作品都经过至少 48 小时的静置与打磨，只为赋予时间以重量。</p>
+      <a href="#" class="btn">Read the story</a>
+    </div>
+  </div>
+</section>
+
+<section style="padding: 0;">
+  <div class="usp-grid">
+    <div class="usp-item"><div class="icon">✦</div><h4>Handcrafted</h4><p>由 12 位匠人限量制作</p></div>
+    <div class="usp-item"><div class="icon">✦</div><h4>Private Atelier</h4><p>预约制 1 对 1 服务</p></div>
+    <div class="usp-item"><div class="icon">✦</div><h4>Lifetime Care</h4><p>终身保养与修复</p></div>
+    <div class="usp-item"><div class="icon">✦</div><h4>Discreet Shipping</h4><p>全球私密配送</p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-grid">
+    <div>
+      <div class="logo">Noir</div>
+      <p>Maison privée établie en 1924. Limited, always.</p>
+    </div>
+    <div><h5>Maison</h5><ul><li><a href="#">Collections</a></li><li><a href="#">Atelier</a></li><li><a href="#">Bespoke</a></li></ul></div>
+    <div><h5>Services</h5><ul><li><a href="#">Shipping</a></li><li><a href="#">Care</a></li><li><a href="#">Appointments</a></li></ul></div>
+    <div><h5>Connect</h5><ul><li><a href="#">Instagram</a></li><li><a href="#">Journal</a></li><li><a href="#">Contact</a></li></ul></div>
+  </div>
+  <div class="copy">© 2026 Maison Noir · Paris · All rights reserved</div>
+</footer>
+
+</body>
+</html>

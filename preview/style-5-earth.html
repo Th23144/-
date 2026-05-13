@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style 05 · Warm Earth 大地色手作风</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4ede1;
+    --bg-alt: #ebe0cc;
+    --ink: #3a2e1f;
+    --muted: #7a6a55;
+    --terracotta: #b8826a;
+    --olive: #7a8968;
+    --cream: #fbf6eb;
+    --line: #d8ccb6;
+    --serif: "Fraunces", "Noto Serif SC", Georgia, serif;
+    --sans: "DM Sans", -apple-system, "PingFang SC", sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+
+  .backbar { background: var(--ink); color: var(--cream); padding: 10px 32px; font-size: 12px; display:flex; justify-content:space-between; }
+  .backbar a { opacity: .8; }
+
+  header { padding: 28px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); background: var(--bg); }
+  .logo { font-family: var(--serif); font-size: 28px; font-weight: 500; font-style: italic; color: var(--terracotta); }
+  nav ul { list-style: none; display: flex; gap: 32px; }
+  nav a { font-size: 14px; color: var(--ink); font-weight: 500; letter-spacing: 0.02em; transition: color .25s; }
+  nav a:hover { color: var(--terracotta); }
+  .icons { display:flex; gap: 16px; align-items: center; font-size: 14px; }
+  .icons span { cursor: pointer; color: var(--ink); transition: color .25s; }
+  .icons span:hover { color: var(--terracotta); }
+  .cart-pill { background: var(--ink); color: var(--cream); padding: 10px 18px; border-radius: 999px; font-size: 13px; }
+
+  .hero { padding: 100px 40px 120px; max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .hero .eyebrow { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--terracotta); margin-bottom: 20px; }
+  .hero h1 { font-family: var(--serif); font-size: clamp(52px, 7.5vw, 92px); font-weight: 400; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 28px; }
+  .hero h1 em { font-style: italic; color: var(--terracotta); }
+  .hero h1 u { text-decoration: none; border-bottom: 4px solid var(--olive); padding-bottom: 4px; }
+  .hero p { font-size: 17px; line-height: 1.8; color: var(--muted); max-width: 440px; margin-bottom: 36px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 18px 36px; background: var(--ink); color: var(--cream); font-size: 14px; font-weight: 500; border-radius: 999px; transition: all .3s; }
+  .btn:hover { background: var(--terracotta); transform: translateY(-2px); }
+  .btn.olive { background: var(--olive); }
+  .btn.olive:hover { background: #5c6b4e; }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--ink); margin-left: 8px; }
+  .btn.ghost:hover { background: var(--ink); color: var(--cream); }
+  .hero-img { aspect-ratio: 4/5; background: linear-gradient(160deg, #d4b896, #a8826a); border-radius: 8px 8px 200px 200px; position: relative; box-shadow: 0 24px 60px rgba(58,46,31,0.15); overflow: hidden; display:flex; align-items:flex-end; justify-content:center; padding: 40px; color: var(--cream); font-family: var(--serif); font-style: italic; }
+  .hero-img::before { content: "✿"; position: absolute; top: 40px; left: 40px; font-size: 48px; color: var(--olive); opacity: .6; }
+
+  section { padding: 80px 40px; max-width: 1440px; margin: 0 auto; }
+  .section-head { margin-bottom: 56px; display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; }
+  .section-head .eyebrow { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--terracotta); margin-bottom: 12px; }
+  .section-head h2 { font-family: var(--serif); font-size: 52px; font-weight: 400; letter-spacing: -0.01em; line-height: 1.1; }
+  .section-head h2 em { font-style: italic; color: var(--olive); }
+  .section-link { font-size: 14px; font-weight: 500; padding-bottom: 4px; border-bottom: 1px solid var(--ink); }
+
+  .products { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  .product { cursor: pointer; }
+  .product .img-wrap { aspect-ratio: 4/5; background: var(--bg-alt); border-radius: 8px; margin-bottom: 18px; overflow: hidden; position: relative; }
+  .product .img-wrap::after { content: ""; position: absolute; inset: 0; }
+  .product .p1 { background: linear-gradient(160deg,#e8d3b8,#b8826a); }
+  .product .p2 { background: linear-gradient(160deg,#c9b896,#7a8968); }
+  .product .p3 { background: linear-gradient(160deg,#e4d5bc,#a8826a); }
+  .product .p4 { background: linear-gradient(160deg,#d4c8a8,#8a7560); }
+  .product .tag { display: inline-block; background: var(--cream); color: var(--muted); padding: 4px 10px; border-radius: 999px; font-size: 11px; margin-bottom: 8px; }
+  .product .name { font-family: var(--serif); font-size: 20px; font-weight: 400; margin-bottom: 6px; }
+  .product .meta { display: flex; justify-content: space-between; align-items: center; }
+  .product .price { font-size: 15px; color: var(--ink); font-weight: 500; }
+  .product .add { font-size: 13px; color: var(--muted); border-bottom: 1px solid var(--muted); padding-bottom: 2px; }
+
+  .story { background: var(--cream); border-radius: 24px; padding: 80px 60px; margin-top: 40px; display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: center; }
+  .story-img { aspect-ratio: 1/1; background: linear-gradient(160deg, var(--olive) 0%, #5c6b4e 100%); border-radius: 50%; color: var(--cream); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 120px; font-style: italic; box-shadow: 0 24px 60px rgba(122,137,104,0.3); }
+  .story h3 { font-family: var(--serif); font-size: 44px; font-weight: 400; line-height: 1.15; margin-bottom: 24px; }
+  .story h3 em { font-style: italic; color: var(--terracotta); }
+  .story p { font-size: 16px; line-height: 1.9; color: var(--muted); margin-bottom: 28px; }
+
+  .usp { padding: 60px 40px; background: var(--ink); color: var(--cream); border-radius: 24px; margin: 60px auto; max-width: 1440px; }
+  .usp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+  .usp-item { text-align: center; }
+  .usp-item .icon { font-family: var(--serif); font-size: 40px; color: var(--terracotta); margin-bottom: 14px; font-style: italic; }
+  .usp-item h4 { font-family: var(--serif); font-size: 18px; font-weight: 500; margin-bottom: 8px; }
+  .usp-item p { font-size: 13px; color: rgba(251,246,235,0.7); line-height: 1.7; }
+
+  footer { background: var(--ink); color: rgba(251,246,235,0.8); padding: 80px 40px 32px; }
+  .f-grid { max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; padding-bottom: 48px; border-bottom: 1px solid rgba(251,246,235,0.2); }
+  footer .logo { color: var(--terracotta); margin-bottom: 20px; }
+  footer p { font-size: 14px; line-height: 1.9; max-width: 340px; }
+  footer h5 { font-family: var(--serif); font-size: 16px; font-weight: 500; font-style: italic; color: var(--cream); margin-bottom: 20px; }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 10px; }
+  footer a { font-size: 14px; transition: color .25s; }
+  footer a:hover { color: var(--terracotta); }
+  .copy { max-width: 1440px; margin: 0 auto; padding-top: 28px; font-size: 13px; opacity: .6; font-style: italic; font-family: var(--serif); }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 60px 20px; gap: 48px; }
+    .products { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .usp-grid { grid-template-columns: repeat(2, 1fr); }
+    .f-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .story { grid-template-columns: 1fr; padding: 48px 28px; gap: 40px; }
+    nav { display: none; }
+    section { padding: 50px 20px; }
+    header { padding: 20px 20px; }
+    .section-head { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="backbar"><a href="./index.html">← 返回方向选择</a><span>Style 05 · Warm Earth</span></div>
+
+<header>
+  <div class="logo">Maple & Oak</div>
+  <nav>
+    <ul>
+      <li><a href="#">Shop</a></li>
+      <li><a href="#">Coffee</a></li>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Journal</a></li>
+      <li><a href="#">Our Farm</a></li>
+    </ul>
+  </nav>
+  <div class="icons">
+    <span>Search</span>
+    <span>Account</span>
+    <span class="cart-pill">Bag · 0</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow">— Harvest 2026 —</div>
+    <h1>Good things, <em>slowly</em><br><u>made</u>.</h1>
+    <p>从一片种满枫树和橡木的小农场出发，手工烘焙的咖啡、亲手编织的羊毛毯、陶土亲吻过的日用器物。慢，才是温度。</p>
+    <a href="#" class="btn">Shop the harvest →</a>
+    <a href="#" class="btn ghost">Visit the farm</a>
+  </div>
+  <div class="hero-img">"we grow it, we make it, we ship it."</div>
+</section>
+
+<section>
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">— This season —</div>
+      <h2>Hand-picked <em>favourites</em></h2>
+    </div>
+    <a href="#" class="section-link">View all products →</a>
+  </div>
+  <div class="products">
+    <div class="product">
+      <div class="img-wrap p1"></div>
+      <div class="tag">Coffee</div>
+      <div class="name">Oak Smoke Roast 250g</div>
+      <div class="meta"><div class="price">¥ 168</div><span class="add">add +</span></div>
+    </div>
+    <div class="product">
+      <div class="img-wrap p2"></div>
+      <div class="tag">Home</div>
+      <div class="name">Wool Throw · Moss</div>
+      <div class="meta"><div class="price">¥ 580</div><span class="add">add +</span></div>
+    </div>
+    <div class="product">
+      <div class="img-wrap p3"></div>
+      <div class="tag">Kitchen</div>
+      <div class="name">Clay Pour-over Dripper</div>
+      <div class="meta"><div class="price">¥ 320</div><span class="add">add +</span></div>
+    </div>
+    <div class="product">
+      <div class="img-wrap p4"></div>
+      <div class="tag">Leather</div>
+      <div class="name">Vegetable-tanned Wallet</div>
+      <div class="meta"><div class="price">¥ 460</div><span class="add">add +</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="story">
+    <div class="story-img">M</div>
+    <div>
+      <div class="eyebrow" style="font-family: var(--serif); font-style: italic; color: var(--terracotta); margin-bottom: 12px;">— Our story —</div>
+      <h3>From <em>one tree</em>,<br>to one thousand cups.</h3>
+      <p>2018 年，我们在山谷里种下了第一棵枫树。八年后的今天，农场里有了 3,000 棵树、2 位驻场匠人、1 个固执的信念：好东西，是从慢慢长大、慢慢做出来的。</p>
+      <a href="#" class="btn olive">Read our journey →</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="usp">
+    <div class="usp-grid">
+      <div class="usp-item"><div class="icon">✿</div><h4>Farm to door</h4><p>从我们的农场直接寄到你家门口</p></div>
+      <div class="usp-item"><div class="icon">✿</div><h4>Hand-made</h4><p>每件产品都由匠人亲手完成</p></div>
+      <div class="usp-item"><div class="icon">✿</div><h4>Sustainable</h4><p>可回收包装 · 碳中和物流</p></div>
+      <div class="usp-item"><div class="icon">✿</div><h4>30-day love</h4><p>不喜欢？30 天无理由退换</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-grid">
+    <div>
+      <div class="logo" style="font-family: var(--serif); font-size: 26px; font-style: italic;">Maple & Oak</div>
+      <p>Good things, slowly made. Shipped from our little farm in the valley to your home around the world.</p>
+    </div>
+    <div><h5>Shop</h5><ul><li><a href="#">Coffee</a></li><li><a href="#">Home</a></li><li><a href="#">Leather</a></li><li><a href="#">Gift Box</a></li></ul></div>
+    <div><h5>Care</h5><ul><li><a href="#">Shipping</a></li><li><a href="#">Returns</a></li><li><a href="#">Sustainability</a></li><li><a href="#">Contact</a></li></ul></div>
+    <div><h5>Follow</h5><ul><li><a href="#">Instagram</a></li><li><a href="#">Journal</a></li><li><a href="#">Newsletter</a></li></ul></div>
+  </div>
+  <div class="copy">© 2026 Maple & Oak · grown, made, and sent with care</div>
+</footer>
+
+</body>
+</html>

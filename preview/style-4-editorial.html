@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style 04 · Editorial Bold 杂志潮流</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f2f2f2;
+    --ink: #000000;
+    --muted: #666666;
+    --accent: #ff5c00;
+    --accent-yellow: #e8ff3a;
+    --line: #000;
+    --display: "Archivo Black", -apple-system, sans-serif;
+    --sans: "Inter", -apple-system, "PingFang SC", sans-serif;
+    --mono: "JetBrains Mono", monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+
+  .backbar { background: var(--ink); color: var(--bg); padding: 10px 32px; font-family: var(--mono); font-size: 12px; display:flex; justify-content:space-between; text-transform: uppercase; }
+  .backbar a { color: var(--accent-yellow); }
+
+  .marquee { background: var(--ink); color: var(--bg); padding: 10px 0; overflow: hidden; white-space: nowrap; font-family: var(--mono); font-size: 13px; letter-spacing: 0.2em; }
+  .marquee span { display: inline-block; padding-right: 40px; }
+  .marquee span::after { content: "●"; color: var(--accent); margin-left: 40px; }
+
+  header { padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--ink); position: sticky; top: 0; background: var(--bg); z-index: 10; }
+  .logo { font-family: var(--display); font-size: 32px; letter-spacing: -0.04em; text-transform: uppercase; }
+  .logo::after { content: "/24"; color: var(--accent); margin-left: 4px; }
+  nav ul { list-style: none; display: flex; gap: 4px; }
+  nav a { font-size: 13px; font-weight: 700; text-transform: uppercase; padding: 8px 14px; transition: all .15s; letter-spacing: 0.02em; }
+  nav a:hover { background: var(--ink); color: var(--bg); }
+  .icons { display: flex; gap: 8px; font-family: var(--mono); font-size: 12px; }
+  .icons span { padding: 10px 14px; border: 2px solid var(--ink); cursor: pointer; text-transform: uppercase; transition: all .15s; }
+  .icons span:hover { background: var(--ink); color: var(--bg); }
+  .icons .bag { background: var(--ink); color: var(--bg); }
+  .icons .bag:hover { background: var(--accent); color: var(--ink); border-color: var(--accent); }
+
+  .hero { padding: 60px 40px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; border-bottom: 3px solid var(--ink); align-items: end; }
+  .hero h1 { font-family: var(--display); font-size: clamp(80px, 14vw, 200px); line-height: 0.85; letter-spacing: -0.05em; text-transform: uppercase; }
+  .hero h1 span { color: var(--accent); }
+  .hero h1 em { font-style: italic; font-family: "Inter", serif; font-weight: 900; }
+  .hero-right { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; }
+  .meta { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; }
+  .meta b { color: var(--accent); }
+  .hero p { font-size: 18px; line-height: 1.5; font-weight: 500; max-width: 420px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 20px 32px; background: var(--ink); color: var(--bg); font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; border: 2px solid var(--ink); transition: all .15s; }
+  .btn:hover { background: var(--accent); color: var(--ink); border-color: var(--accent); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+  .btn.invert { background: var(--bg); color: var(--ink); }
+  .btn.invert:hover { background: var(--accent-yellow); }
+  .hero-img { aspect-ratio: 1/1; background: var(--accent); position: relative; overflow: hidden; border: 3px solid var(--ink); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-size: 160px; color: var(--ink); }
+  .sticker { position: absolute; top: 24px; right: 24px; background: var(--accent-yellow); padding: 12px 20px; font-family: var(--display); font-size: 14px; text-transform: uppercase; transform: rotate(6deg); border: 2px solid var(--ink); }
+
+  section { padding: 80px 40px; border-bottom: 3px solid var(--ink); }
+  .section-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; }
+  .section-head h2 { font-family: var(--display); font-size: clamp(48px, 7vw, 96px); line-height: 0.9; letter-spacing: -0.03em; text-transform: uppercase; }
+  .section-head .num { font-family: var(--mono); font-size: 14px; }
+
+  .products { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 3px solid var(--ink); }
+  .product { border-right: 3px solid var(--ink); padding: 24px; cursor: pointer; transition: background .2s; position: relative; }
+  .product:last-child { border-right: none; }
+  .product:hover { background: var(--accent-yellow); }
+  .product .img { aspect-ratio: 1/1; background: var(--bg-alt); margin-bottom: 20px; border: 2px solid var(--ink); display:flex; align-items:center; justify-content:center; font-family: var(--display); font-size: 80px; color: var(--ink); }
+  .product .p1 { background: #ffe3b0; }
+  .product .p2 { background: #b0d9e8; }
+  .product .p3 { background: #ffb0b0; }
+  .product .p4 { background: #c9e8b0; }
+  .product .id { font-family: var(--mono); font-size: 11px; margin-bottom: 6px; }
+  .product .name { font-size: 18px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 6px; line-height: 1.1; }
+  .product .price { font-family: var(--mono); font-size: 14px; font-weight: 700; }
+  .product .badge { position:absolute; top: 16px; right: 16px; background: var(--ink); color: var(--accent); padding: 4px 8px; font-family: var(--mono); font-size: 11px; text-transform: uppercase; }
+
+  .featured { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 3px solid var(--ink); }
+  .featured-img { aspect-ratio: auto; min-height: 420px; background: var(--ink); color: var(--accent); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-size: 120px; text-transform: uppercase; }
+  .featured-text { padding: 48px; border-left: 3px solid var(--ink); display: flex; flex-direction: column; justify-content: space-between; background: var(--accent); }
+  .featured-text h3 { font-family: var(--display); font-size: 56px; line-height: 0.95; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 20px; }
+  .featured-text p { font-size: 16px; font-weight: 500; line-height: 1.5; }
+
+  .usp-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .usp-item { padding: 32px; border-right: 3px solid var(--ink); }
+  .usp-item:last-child { border-right: none; }
+  .usp-item .num { font-family: var(--mono); font-size: 13px; margin-bottom: 16px; }
+  .usp-item h4 { font-family: var(--display); font-size: 24px; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 10px; line-height: 1; }
+  .usp-item p { font-size: 14px; line-height: 1.5; font-weight: 500; }
+
+  footer { background: var(--ink); color: var(--bg); padding: 60px 40px 20px; }
+  footer .big { font-family: var(--display); font-size: clamp(60px, 11vw, 160px); line-height: 0.85; text-transform: uppercase; letter-spacing: -0.04em; color: var(--bg); margin-bottom: 48px; }
+  footer .big span { color: var(--accent); }
+  .f-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 32px; border-bottom: 2px solid var(--muted); font-size: 14px; }
+  footer h5 { font-family: var(--mono); font-size: 12px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 8px; }
+  footer a { font-weight: 500; transition: color .15s; }
+  footer a:hover { color: var(--accent); }
+  .copy { padding-top: 20px; font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; opacity: .6; }
+
+  @media (max-width: 900px) {
+    header { padding: 16px 20px; flex-wrap: wrap; gap: 16px; }
+    nav { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 40px 20px; }
+    .products { grid-template-columns: 1fr 1fr; }
+    .products .product:nth-child(1), .products .product:nth-child(2) { border-bottom: 3px solid var(--ink); }
+    .products .product:nth-child(2n) { border-right: none; }
+    .featured { grid-template-columns: 1fr; }
+    .featured-text { border-left: none; border-top: 3px solid var(--ink); }
+    .usp-grid { grid-template-columns: 1fr 1fr; }
+    .usp-item:nth-child(2n) { border-right: none; }
+    .usp-item:nth-child(1), .usp-item:nth-child(2) { border-bottom: 3px solid var(--ink); }
+    .f-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    section { padding: 40px 20px; }
+    .hero-img { font-size: 80px; }
+  }
+</style>
+</head>
+<body>
+<div class="backbar"><a href="./index.html">← BACK TO DIRECTIONS</a><span>STYLE 04 / EDITORIAL BOLD</span></div>
+
+<div class="marquee">
+  <span>FREE SHIPPING OVER $80</span>
+  <span>NEW DROP · MAY 13</span>
+  <span>MEMBERS GET 15% OFF</span>
+  <span>BOLD / 24 SS COLLECTION</span>
+  <span>FREE SHIPPING OVER $80</span>
+  <span>NEW DROP · MAY 13</span>
+</div>
+
+<header>
+  <div class="logo">BOLD</div>
+  <nav>
+    <ul>
+      <li><a href="#">Shop All</a></li>
+      <li><a href="#">New</a></li>
+      <li><a href="#">Sale</a></li>
+      <li><a href="#">Stories</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="icons">
+    <span>Search</span>
+    <span class="bag">Bag / 0</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="meta" style="margin-bottom:16px;">DROP #027 <b>●</b> MAY 13, 2026</div>
+    <h1>NOT<br>QUIET.<br><span>LOUD.</span></h1>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img" style="width:100%;">★<div class="sticker">NEW!</div></div>
+    <p>This isn't for everyone. It's for <em>the ones who refuse to blend in</em>.</p>
+    <div style="display:flex; gap: 12px;">
+      <a href="#" class="btn">SHOP THE DROP →</a>
+      <a href="#" class="btn invert">LOOKBOOK</a>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0;">
+  <div class="section-head" style="padding: 60px 40px 24px; margin:0;">
+    <h2>THIS WEEK<br>ONLY.</h2>
+    <div class="num">04 ITEMS / 027 DROP</div>
+  </div>
+  <div class="products">
+    <div class="product"><div class="img p1">▲</div><div class="id">#027-01</div><div class="name">Heavy Tee · Rust</div><div class="price">$ 64.00</div></div>
+    <div class="product"><div class="img p2">◆</div><div class="id">#027-02</div><div class="name">Workwear Cap</div><div class="price">$ 38.00</div><div class="badge">NEW</div></div>
+    <div class="product"><div class="img p3">●</div><div class="id">#027-03</div><div class="name">Chunky Sneaker</div><div class="price">$ 180.00</div></div>
+    <div class="product"><div class="img p4">■</div><div class="id">#027-04</div><div class="name">Crossbody Bag</div><div class="price">$ 96.00</div><div class="badge">HOT</div></div>
+  </div>
+</section>
+
+<section>
+  <div class="featured">
+    <div class="featured-img">SS / 26</div>
+    <div class="featured-text">
+      <div>
+        <div class="meta" style="margin-bottom:16px;">● FEATURED STORY</div>
+        <h3>MADE TO<br>MOVE.<br>MADE TO<br>LAST.</h3>
+      </div>
+      <div>
+        <p>Built for real streets, real weather, real people. No runway nonsense.</p>
+        <a href="#" class="btn invert" style="margin-top: 24px;">READ THE STORY</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding: 0;">
+  <div class="usp-grid">
+    <div class="usp-item"><div class="num">01 / SHIPPING</div><h4>Fast AF</h4><p>Ships in 24h, globally tracked.</p></div>
+    <div class="usp-item"><div class="num">02 / RETURNS</div><h4>No Drama</h4><p>30-day returns, no questions asked.</p></div>
+    <div class="usp-item"><div class="num">03 / MEMBERS</div><h4>Early Drops</h4><p>Sign up, get drops 24h earlier.</p></div>
+    <div class="usp-item"><div class="num">04 / SUPPORT</div><h4>Real Humans</h4><p>DM us, we reply.</p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="big">STAY<br><span>LOUD.</span></div>
+  <div class="f-grid">
+    <div>
+      <h5>NEWSLETTER</h5>
+      <p>Drops, collabs, and the occasional rant. No spam, we promise.</p>
+      <div style="margin-top: 16px; display: flex; gap: 0; max-width: 360px;">
+        <input placeholder="Your email" style="flex:1; background: transparent; border: 2px solid var(--bg); color: var(--bg); padding: 14px 16px; font-family: var(--mono); font-size: 13px;">
+        <button style="background: var(--accent); color: var(--ink); border: 2px solid var(--accent); padding: 14px 20px; font-family: var(--display); font-size: 13px; text-transform: uppercase; cursor: pointer;">JOIN</button>
+      </div>
+    </div>
+    <div><h5>SHOP</h5><ul><li><a href="#">All</a></li><li><a href="#">New</a></li><li><a href="#">Sale</a></li><li><a href="#">Lookbook</a></li></ul></div>
+    <div><h5>HELP</h5><ul><li><a href="#">Shipping</a></li><li><a href="#">Returns</a></li><li><a href="#">Size Guide</a></li><li><a href="#">FAQ</a></li></ul></div>
+    <div><h5>FOLLOW</h5><ul><li><a href="#">Instagram</a></li><li><a href="#">TikTok</a></li><li><a href="#">YouTube</a></li></ul></div>
+  </div>
+  <div class="copy">© 2026 BOLD/24 · STAY LOUD OR STAY HOME · ALL RIGHTS RESERVED</div>
+</footer>
+
+</body>
+</html>

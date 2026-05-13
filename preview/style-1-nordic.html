@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style 01 · Nordic Calm 极简北欧</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf8f3;
+    --bg-alt: #f1ece2;
+    --ink: #1a1a1a;
+    --muted: #7a7a75;
+    --line: #d9d3c5;
+    --accent: #8b9a8b;
+    --accent-dark: #5e6d5e;
+    --serif: "Cormorant Garamond", "Noto Serif SC", Georgia, serif;
+    --sans: "Inter", -apple-system, "PingFang SC", sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  .backbar { background: #1a1a1a; color: #faf8f3; padding: 10px 40px; font-size: 13px; display:flex; justify-content: space-between; }
+  .backbar a { opacity: .7; }
+  .backbar a:hover { opacity: 1; }
+
+  header { border-bottom: 1px solid var(--line); padding: 28px 40px; display: flex; justify-content: space-between; align-items: center; position: sticky; top:0; background: var(--bg); z-index: 10; }
+  .logo { font-family: var(--serif); font-size: 26px; font-weight: 400; letter-spacing: 0.02em; }
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav a { font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); transition: color .2s; }
+  nav a:hover { color: var(--ink); }
+  .icons { display:flex; gap: 22px; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .icons span { cursor: pointer; }
+  .icons span:hover { color: var(--ink); }
+
+  .hero { padding: 120px 40px 140px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px; align-items: center; max-width: 1440px; margin: 0 auto; }
+  .hero .eyebrow { font-size: 12px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent-dark); margin-bottom: 28px; }
+  .hero h1 { font-family: var(--serif); font-size: clamp(48px, 7vw, 88px); font-weight: 300; line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 32px; }
+  .hero h1 em { font-style: italic; color: var(--accent-dark); }
+  .hero p { font-size: 17px; line-height: 1.8; color: var(--muted); max-width: 440px; margin-bottom: 44px; }
+  .btn { display: inline-block; padding: 18px 44px; background: var(--ink); color: var(--bg); font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; transition: all .25s; }
+  .btn:hover { background: var(--accent-dark); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--ink); margin-left: 12px; }
+  .btn.ghost:hover { background: var(--ink); color: var(--bg); }
+  .hero-img { aspect-ratio: 4/5; background: linear-gradient(135deg,#e8e2d4,#c7beb1); border-radius: 4px; display:flex; align-items:flex-end; padding: 32px; font-family: var(--serif); font-style: italic; color: #6a6258; font-size: 14px; }
+
+  section { padding: 100px 40px; max-width: 1440px; margin: 0 auto; }
+  .section-head { text-align: center; margin-bottom: 72px; }
+  .section-head .eyebrow { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent-dark); margin-bottom: 16px; }
+  .section-head h2 { font-family: var(--serif); font-size: 48px; font-weight: 300; letter-spacing: -0.01em; }
+
+  .products { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  .product { cursor: pointer; }
+  .product .img { aspect-ratio: 3/4; background: var(--bg-alt); margin-bottom: 20px; overflow: hidden; position: relative; transition: transform .4s; }
+  .product:hover .img { transform: scale(0.98); }
+  .product .img::after { content:"Product Photo"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#aaa5; font-family: var(--serif); font-style: italic; font-size: 14px; }
+  .product .p1 { background: linear-gradient(160deg,#efe8d8,#d7cfbd); }
+  .product .p2 { background: linear-gradient(160deg,#e2ddd0,#c5bea9); }
+  .product .p3 { background: linear-gradient(160deg,#ece6d4,#b8b0a0); }
+  .product .p4 { background: linear-gradient(160deg,#d8d2c1,#a8a196); }
+  .product .name { font-family: var(--serif); font-size: 20px; font-weight: 400; margin-bottom: 6px; }
+  .product .price { font-size: 14px; color: var(--muted); letter-spacing: 0.05em; }
+
+  .usp { background: var(--bg-alt); padding: 80px 40px; }
+  .usp-grid { max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px; }
+  .usp-item { text-align: center; }
+  .usp-item .icon { font-family: var(--serif); font-size: 40px; font-weight: 300; color: var(--accent-dark); margin-bottom: 16px; }
+  .usp-item h4 { font-family: var(--serif); font-size: 20px; font-weight: 400; margin-bottom: 8px; }
+  .usp-item p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+  footer { background: var(--ink); color: #c7beb1; padding: 80px 40px 32px; }
+  .f-grid { max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; padding-bottom: 60px; border-bottom: 1px solid #333; }
+  footer .logo { color: var(--bg); margin-bottom: 20px; }
+  footer p { font-size: 14px; line-height: 1.8; max-width: 340px; }
+  footer h5 { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bg); margin-bottom: 20px; }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 10px; }
+  footer a { font-size: 14px; opacity: .7; transition: opacity .2s; }
+  footer a:hover { opacity: 1; }
+  .copy { max-width: 1440px; margin: 0 auto; padding-top: 32px; font-size: 12px; opacity: .5; letter-spacing: 0.08em; }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
+    .products { grid-template-columns: repeat(2, 1fr); }
+    .usp-grid { grid-template-columns: repeat(2, 1fr); }
+    .f-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    nav { display: none; }
+    header { padding: 20px 24px; }
+    section { padding: 60px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="backbar"><a href="./index.html">← 返回方向选择</a><span>Style 01 · Nordic Calm</span></div>
+
+<header>
+  <div class="logo">Spatial Flow</div>
+  <nav>
+    <ul>
+      <li><a href="#">Shop</a></li>
+      <li><a href="#">Collections</a></li>
+      <li><a href="#">Journal</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="icons"><span>Search</span><span>Account</span><span>Bag (0)</span></div>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow">New Arrivals · Spring 2026</div>
+    <h1>Quiet things<br>that make a <em>home</em>.</h1>
+    <p>精选自世界各地的独立工作室，只保留最诚实的材质与最干净的线条。一件就够，从此陪伴很久。</p>
+    <a href="#" class="btn">Shop the edit</a>
+    <a href="#" class="btn ghost">Our story</a>
+  </div>
+  <div class="hero-img">a slow morning, a warm cup, a room that breathes.</div>
+</section>
+
+<section>
+  <div class="section-head">
+    <div class="eyebrow">The Edit</div>
+    <h2>Featured pieces</h2>
+  </div>
+  <div class="products">
+    <div class="product"><div class="img p1"></div><div class="name">Linen Throw · Oat</div><div class="price">¥ 480</div></div>
+    <div class="product"><div class="img p2"></div><div class="name">Stoneware Vase</div><div class="price">¥ 260</div></div>
+    <div class="product"><div class="img p3"></div><div class="name">Ash Wood Tray</div><div class="price">¥ 340</div></div>
+    <div class="product"><div class="img p4"></div><div class="name">Beeswax Candle</div><div class="price">¥ 120</div></div>
+  </div>
+</section>
+
+<section class="usp">
+  <div class="usp-grid">
+    <div class="usp-item"><div class="icon">—</div><h4>Slow made</h4><p>小批量、独立工坊、每一件都可追溯</p></div>
+    <div class="usp-item"><div class="icon">—</div><h4>Honest material</h4><p>天然、可持续、无表面涂装</p></div>
+    <div class="usp-item"><div class="icon">—</div><h4>Global shipping</h4><p>30+ 个国家 / 地区直邮</p></div>
+    <div class="usp-item"><div class="icon">—</div><h4>30-day return</h4><p>无理由，完整退款</p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-grid">
+    <div>
+      <div class="logo">Spatial Flow</div>
+      <p>Quiet objects for slow living. Shipped worldwide from our studio.</p>
+    </div>
+    <div><h5>Shop</h5><ul><li><a href="#">New</a></li><li><a href="#">Collections</a></li><li><a href="#">Gift Cards</a></li></ul></div>
+    <div><h5>Care</h5><ul><li><a href="#">Shipping</a></li><li><a href="#">Returns</a></li><li><a href="#">Contact</a></li></ul></div>
+    <div><h5>Follow</h5><ul><li><a href="#">Instagram</a></li><li><a href="#">Journal</a></li><li><a href="#">Newsletter</a></li></ul></div>
+  </div>
+  <div class="copy">© 2026 Spatial Flow · All rights reserved</div>
+</footer>
+
+</body>
+</html>
