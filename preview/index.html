@@ -8,130 +8,170 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
-    background: #0f0f10;
-    color: #e8e8e8;
-    min-height: 100vh;
-    padding: 80px 40px;
+    background: #0f0f10; color: #e8e8e8; min-height: 100vh; padding: 80px 40px;
   }
   .wrap { max-width: 1200px; margin: 0 auto; }
   h1 { font-size: 44px; font-weight: 300; letter-spacing: -0.02em; margin-bottom: 12px; }
-  .subtitle { color: #888; font-size: 16px; margin-bottom: 60px; max-width: 720px; line-height: 1.7; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-  .card {
-    background: #1a1a1c; border: 1px solid #2a2a2c; border-radius: 16px;
-    overflow: hidden; transition: transform .25s ease, border-color .25s ease;
-    text-decoration: none; color: inherit; display: block;
-  }
+  .subtitle { color: #888; font-size: 16px; margin-bottom: 40px; max-width: 760px; line-height: 1.75; }
+  .group-title { font-size: 13px; color: #999; letter-spacing: 0.15em; text-transform: uppercase; margin: 48px 0 20px; padding-bottom: 12px; border-bottom: 1px solid #2a2a2c; }
+  .group-title b { color: #ffb43a; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .card { background: #1a1a1c; border: 1px solid #2a2a2c; border-radius: 14px; overflow: hidden; transition: transform .25s ease, border-color .25s ease; text-decoration: none; color: inherit; display: block; position: relative; }
   .card:hover { transform: translateY(-4px); border-color: #555; }
-  .thumb {
-    aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center;
-    font-size: 32px; font-weight: 300; letter-spacing: .05em;
-  }
+  .card.recommended { border-color: #ffb43a; }
+  .card.recommended::before { content: "★ 新方向"; position: absolute; top: 14px; right: 14px; background: #ffb43a; color: #0f0f10; padding: 4px 10px; border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; z-index: 2; }
+  .thumb { aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 300; letter-spacing: 0.05em; position: relative; overflow: hidden; }
   .thumb-1 { background: linear-gradient(135deg,#faf8f3,#e8e4d8); color:#2a2a28; font-family: Georgia, serif; }
   .thumb-2 { background: linear-gradient(135deg,#0a0a0a,#1f1a10); color:#c9a961; font-family: Georgia, serif; letter-spacing:.2em; }
   .thumb-3 { background: linear-gradient(135deg,#fff5ee,#ffe4d4); color:#8b5a3c; }
-  .thumb-4 { background:#fff; color:#000; font-weight:900; font-family:"Arial Black",sans-serif; letter-spacing:-.03em; position:relative; }
-  .thumb-4::after { content:""; position:absolute; right:24px; top:24px; width:60px; height:60px; background:#ff5c00; border-radius:50%; }
+  .thumb-4 { background:#fff; color:#000; font-weight:900; font-family:"Arial Black",sans-serif; letter-spacing:-.03em; }
+  .thumb-4::after { content:""; position:absolute; right:24px; top:24px; width:48px; height:48px; background:#ff5c00; border-radius:50%; }
+  .thumb-4a { background: linear-gradient(135deg,#f5f1e8,#ebe5d4); color: #7a2828; font-family: Georgia, serif; font-weight: 900; font-style: italic; }
+  .thumb-4b { background: #f0efea; color:#0a0a0a; font-weight:900; font-family:"Arial Black",sans-serif; letter-spacing:-.05em; position: relative; }
+  .thumb-4b::after { content:""; position:absolute; right:24px; top:24px; width:12px; height:12px; background:#1a30ff; border-radius:50%; }
+  .thumb-4b::before { content:""; position:absolute; left:24px; bottom:24px; right: 24px; height: 1px; background: #0a0a0a; }
+  .thumb-4c { background: #faf6ec; color:#15171c; font-family: Georgia, serif; font-weight: 900; position: relative; }
+  .thumb-4c::after { content: "✺"; position: absolute; top: -12px; right: 8px; color: #eac5c0; font-size: 140px; }
+  .thumb-4c span { position: relative; z-index: 1; }
+  .thumb-4c em { font-style: italic; font-weight: 400; color: #1e3a8a; }
   .thumb-5 { background: linear-gradient(135deg,#f4ede1,#d4b896); color:#3a2e1f; font-family: Georgia, serif; }
-  .body { padding: 24px; }
-  .tag { display:inline-block; font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:#999; margin-bottom:10px; }
-  .name { font-size: 20px; font-weight: 500; margin-bottom: 10px; }
-  .desc { font-size: 14px; color: #999; line-height: 1.6; }
-  .palette { display:flex; gap:6px; margin-top:16px; }
-  .swatch { width:24px; height:24px; border-radius:50%; border:1px solid rgba(255,255,255,.1); }
-  .footer { margin-top: 80px; padding-top: 40px; border-top: 1px solid #2a2a2c; color:#aaa; font-size: 14px; line-height: 1.9; }
+  .body { padding: 20px; }
+  .tag { display:inline-block; font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:#999; margin-bottom:8px; }
+  .name { font-size: 18px; font-weight: 500; margin-bottom: 8px; }
+  .desc { font-size: 13px; color: #999; line-height: 1.55; }
+  .palette { display:flex; gap:6px; margin-top:14px; }
+  .swatch { width:20px; height:20px; border-radius:50%; border:1px solid rgba(255,255,255,.1); }
+  .footer { margin-top: 60px; padding-top: 32px; border-top: 1px solid #2a2a2c; color:#aaa; font-size: 14px; line-height: 1.9; }
   .footer strong { color: #fff; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>视觉方向预览</h1>
-  <p class="subtitle">下面是 5 套完全不同气质的设计方向。点击每张卡片查看对应的首页完整预览（含导航、Hero、产品卡、USP、页脚模块）。选出你最喜欢的 1-2 个方向告诉我（也可以混搭，比如想要 01 的留白 + 02 的字体），我再基于它为你的子主题生成具体的 CSS / 模板代码。</p>
+  <p class="subtitle">根据你的 7 个选择题答案（B 动机 · Kinfolk 气质 · 走期刊路线 · 被理解 / 高级感 · 怕廉价感），我为 Spatial Flow 定制了第一版专属提案。<strong style="color:#ffb43a">下面这个是你应该先看的</strong>，它用了你真实的品牌、文案、产品、博客分类。</p>
 
+  <div class="group-title"><b>★ 为 SPATIAL FLOW 定制的第一版提案（请先看这个）</b></div>
   <div class="grid">
-    <a class="card" href="./style-1-nordic.html">
-      <div class="thumb thumb-1">Nordic Calm</div>
-      <div class="body">
-        <div class="tag">Style 01 · 极简北欧</div>
-        <div class="name">Nordic Calm · 极简留白</div>
-        <div class="desc">大量留白、柔和米白、细衬线字体、低饱和鼠尾草绿点缀。高级、安静、适合生活方式 / 家居 / 护肤 / 服饰。</div>
-        <div class="palette">
-          <span class="swatch" style="background:#faf8f3"></span>
-          <span class="swatch" style="background:#1a1a1a"></span>
-          <span class="swatch" style="background:#8b9a8b"></span>
-          <span class="swatch" style="background:#c7beb1"></span>
-        </div>
+    <a class="card recommended" href="./spatial-flow-v1.html" style="grid-column: 1 / -1;">
+      <div class="thumb" style="aspect-ratio: 21/9; background: linear-gradient(135deg,#f6f1eb,#ede7df); color:#1f1916; font-family: Georgia, serif; font-weight: 500; font-size: 44px; letter-spacing: 0.1em; position: relative;">
+        SPATIAL <em style="font-style: italic; color: #a8745c;">FLOW</em>
+        <span style="position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); font-family: ui-monospace, monospace; font-size: 10px; letter-spacing: 0.3em; color: #5a5a5a;">A JOURNAL OF ROOMS, RITUALS &amp; QUIET OBJECTS</span>
+        <span style="position: absolute; top: 16px; right: 16px; background: #a8745c; color: #f6f1eb; padding: 4px 10px; font-family: ui-monospace, monospace; font-size: 10px; letter-spacing: 0.2em;">VOL I · ISSUE 03</span>
       </div>
-    </a>
-
-    <a class="card" href="./style-2-luxury.html">
-      <div class="thumb thumb-2">LUXE NOIR</div>
       <div class="body">
-        <div class="tag">Style 02 · 高级黑金</div>
-        <div class="name">Luxe Noir · 高级黑金</div>
-        <div class="desc">深黑底、香槟金点缀、高对比衬线大标题、宽字距。戏剧性强、奢华感。适合珠宝 / 香水 / 高端腕表 / 高单价美妆。</div>
+        <div class="tag" style="color: #ffb43a;">★ 专属提案 · Proposal V1</div>
+        <div class="name">Spatial Flow — The Journal Direction</div>
+        <div class="desc">沿用你已有的奶米 #f6f1eb + 墨黑 #1f1916，加入陶土 #a8745c 作为唯一强调色。Cormorant Garamond 衬线 + Inter + 等宽辅助 + 偶尔中文字符（氣/安/卧室）。首页结构变成一本杂志：封面故事 → In This Issue → Manifesto → The Index（产品）→ Where They Live（场景）→ Dispatch（订阅）。</div>
         <div class="palette">
-          <span class="swatch" style="background:#0a0a0a"></span>
-          <span class="swatch" style="background:#c9a961"></span>
-          <span class="swatch" style="background:#f5f0e6"></span>
-          <span class="swatch" style="background:#3a3530"></span>
-        </div>
-      </div>
-    </a>
-
-    <a class="card" href="./style-3-japanese.html">
-      <div class="thumb thumb-3">やさしい</div>
-      <div class="body">
-        <div class="tag">Style 03 · 日系治愈</div>
-        <div class="name">Soft Sakura · 日系治愈</div>
-        <div class="desc">暖米白、樱花粉、圆角、柔和阴影、圆润无衬线。亲切、温暖。适合护肤 / 母婴 / 文具 / 饰品 / 烘焙。</div>
-        <div class="palette">
-          <span class="swatch" style="background:#fff8f3"></span>
-          <span class="swatch" style="background:#e8b4a0"></span>
-          <span class="swatch" style="background:#9bb48f"></span>
-          <span class="swatch" style="background:#3d2e28"></span>
-        </div>
-      </div>
-    </a>
-
-    <a class="card" href="./style-4-editorial.html">
-      <div class="thumb thumb-4">BOLD/24</div>
-      <div class="body">
-        <div class="tag">Style 04 · 现代杂志</div>
-        <div class="name">Editorial Bold · 杂志潮流</div>
-        <div class="desc">超大标题、黑白高对比、亮橙荧光点缀、非对称网格。潮、酷、有态度。适合潮牌 / 球鞋 / 3C / 设计师品牌 / 年轻向。</div>
-        <div class="palette">
-          <span class="swatch" style="background:#ffffff"></span>
-          <span class="swatch" style="background:#000000"></span>
-          <span class="swatch" style="background:#ff5c00"></span>
-          <span class="swatch" style="background:#f2f2f2"></span>
-        </div>
-      </div>
-    </a>
-
-    <a class="card" href="./style-5-earth.html">
-      <div class="thumb thumb-5">Warm Earth</div>
-      <div class="body">
-        <div class="tag">Style 05 · 温暖大地色</div>
-        <div class="name">Warm Earth · 大地色手作</div>
-        <div class="desc">奶咖、赤陶、橄榄绿、温润衬线。自然、有机、有温度。适合咖啡 / 手作 / 宠物 / 户外 / 皮具 / 食品。</div>
-        <div class="palette">
-          <span class="swatch" style="background:#f4ede1"></span>
-          <span class="swatch" style="background:#b8826a"></span>
-          <span class="swatch" style="background:#7a8968"></span>
-          <span class="swatch" style="background:#3a2e1f"></span>
+          <span class="swatch" style="background:#f6f1eb"></span>
+          <span class="swatch" style="background:#1f1916"></span>
+          <span class="swatch" style="background:#a8745c"></span>
+          <span class="swatch" style="background:#4a5d5a"></span>
+          <span class="swatch" style="background:#ede7df"></span>
         </div>
       </div>
     </a>
   </div>
 
+  <div class="group-title">基于 04 的变体（之前迭代留档）</div>
+  <div class="grid">
+    <a class="card recommended" href="./style-4a-editorial-refined.html">
+      <div class="thumb thumb-4a">The Folio</div>
+      <div class="body">
+        <div class="tag">Style 04A · 高级杂志</div>
+        <div class="name">Editorial Refined · 高级杂志</div>
+        <div class="desc">保留 04 的大胆排版，但换成米白 + 墨黑 + 酒红配色，衬线大标题、Issue 027 杂志刊物感。像 Kinfolk / Cereal 杂志。沉得住气，又有记忆点。</div>
+        <div class="palette">
+          <span class="swatch" style="background:#f5f1e8"></span>
+          <span class="swatch" style="background:#1a1410"></span>
+          <span class="swatch" style="background:#7a2828"></span>
+          <span class="swatch" style="background:#c5a68a"></span>
+        </div>
+      </div>
+    </a>
+
+    <a class="card recommended" href="./style-4b-brutalist-swiss.html">
+      <div class="thumb thumb-4b">STUDIO/027</div>
+      <div class="body">
+        <div class="tag">Style 04B · 瑞士极简</div>
+        <div class="name">Brutalist Swiss · 建筑感极简</div>
+        <div class="desc">最"高冷"也最"设计师"的方向。黑白极致 + 电光蓝点缀 + 网格线框 + 单一无衬线。像 Off-White / Acne / 苹果发布会。冷静、克制、有态度。</div>
+        <div class="palette">
+          <span class="swatch" style="background:#f0efea"></span>
+          <span class="swatch" style="background:#0a0a0a"></span>
+          <span class="swatch" style="background:#1a30ff"></span>
+          <span class="swatch" style="background:#6a6a68"></span>
+        </div>
+      </div>
+    </a>
+
+    <a class="card recommended" href="./style-4c-playful-zine.html">
+      <div class="thumb thumb-4c"><span>Curio<em>Co.</em></span></div>
+      <div class="body">
+        <div class="tag">Style 04C · 独立杂志</div>
+        <div class="name">Playful Zine · 独立杂志小店</div>
+        <div class="desc">04 的活泼基因 + 复古印刷质感。暖米白 + 深蓝 + 芥末黄 + 手绘星星 / 旋转装饰 / 跑马灯。像独立小众买手店、小众期刊、手作品牌。活泼但不廉价。</div>
+        <div class="palette">
+          <span class="swatch" style="background:#faf6ec"></span>
+          <span class="swatch" style="background:#15171c"></span>
+          <span class="swatch" style="background:#1e3a8a"></span>
+          <span class="swatch" style="background:#d4a535"></span>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="group-title">原 5 个方向（作为参考）</div>
+  <div class="grid">
+    <a class="card" href="./style-4-editorial.html">
+      <div class="thumb thumb-4">BOLD/24</div>
+      <div class="body">
+        <div class="tag">Style 04 · 原始版本</div>
+        <div class="name">Editorial Bold · 原版 (太躁)</div>
+        <div class="desc">你说"与众不同但又不太行"的那个。太街头太荧光，对照用。</div>
+      </div>
+    </a>
+    <a class="card" href="./style-1-nordic.html">
+      <div class="thumb thumb-1">Nordic Calm</div>
+      <div class="body">
+        <div class="tag">Style 01 · 极简北欧</div>
+        <div class="name">Nordic Calm</div>
+        <div class="desc">太常见了（你的原话）。</div>
+      </div>
+    </a>
+    <a class="card" href="./style-2-luxury.html">
+      <div class="thumb thumb-2">LUXE NOIR</div>
+      <div class="body">
+        <div class="tag">Style 02 · 高级黑金</div>
+        <div class="name">Luxe Noir</div>
+        <div class="desc">黑金经典款。</div>
+      </div>
+    </a>
+    <a class="card" href="./style-3-japanese.html">
+      <div class="thumb thumb-3">やさしい</div>
+      <div class="body">
+        <div class="tag">Style 03 · 日系治愈</div>
+        <div class="name">Soft Sakura</div>
+        <div class="desc">粉嫩日系。</div>
+      </div>
+    </a>
+    <a class="card" href="./style-5-earth.html">
+      <div class="thumb thumb-5">Warm Earth</div>
+      <div class="body">
+        <div class="tag">Style 05 · 大地色</div>
+        <div class="name">Warm Earth</div>
+        <div class="desc">温暖手作感。</div>
+      </div>
+    </a>
+  </div>
+
   <div class="footer">
-    <strong>接下来怎么做：</strong><br>
-    1. 点进每个方向看看完整首页效果<br>
-    2. 告诉我最喜欢的 1-2 个方向编号（可以混搭）<br>
-    3. 如果已有品牌色 / 品牌字体 / logo 想保留，一并发我<br>
-    4. 附上一两张你当前网站的截图，我好做对照改造<br>
-    然后我会生成可以直接贴进 <code>Spatial Flow Astra Child</code> 子主题的 CSS + PHP 代码。
+    <strong>★ 看完之后告诉我：</strong><br>
+    1. 三个新方向（04A / 04B / 04C）里你最喜欢哪一个？<br>
+    2. 如果还不对味，可以告诉我"哪里还不对"（例如：太冷 / 太花 / 字太大 / 想要更彩色），我继续迭代<br>
+    3. 也可以混搭：比如"04A 的整体 + 04C 的旋转装饰"<br>
+    4. 别忘了告诉我你主要卖什么品类，这会让下一版更准<br><br>
+    方向定了之后，我就开始生成可以直接贴进 <code style="background:#2a2a2c;padding:2px 6px;border-radius:4px;">spatial-flow-astra-child</code> 子主题的真实代码。
   </div>
 </div>
 </body>
