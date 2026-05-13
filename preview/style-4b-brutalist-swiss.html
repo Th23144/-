@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style 04B · Brutalist Swiss 黑白极致</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f0efea;
+    --bg-alt: #e4e3de;
+    --ink: #0a0a0a;
+    --muted: #6a6a68;
+    --accent: #1a30ff;
+    --line: #0a0a0a;
+    --sans: "Inter", -apple-system, "PingFang SC", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 15px; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; font-weight: 400; }
+  a { color: inherit; text-decoration: none; }
+
+  .backbar { background: var(--ink); color: var(--bg); padding: 8px 24px; font-family: var(--mono); font-size: 11px; display:flex; justify-content:space-between; text-transform: uppercase; letter-spacing: 0.08em; }
+  .backbar a { color: var(--accent); }
+
+  .grid-container { display: grid; grid-template-columns: repeat(12, 1fr); gap: 0; }
+
+  header { grid-column: 1 / -1; border-bottom: 1px solid var(--ink); display: grid; grid-template-columns: repeat(12, 1fr); align-items: center; position: sticky; top: 0; background: var(--bg); z-index: 10; }
+  header > * { padding: 20px 24px; border-right: 1px solid var(--ink); }
+  header > *:last-child { border-right: none; }
+  .logo { grid-column: 1 / 3; font-family: var(--mono); font-weight: 700; font-size: 14px; letter-spacing: 0.02em; text-transform: uppercase; }
+  nav { grid-column: 3 / 10; }
+  nav ul { list-style: none; display: flex; gap: 28px; }
+  nav a { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; transition: color .15s; }
+  nav a:hover { color: var(--accent); }
+  .search { grid-column: 10 / 12; font-family: var(--mono); font-size: 12px; text-transform: uppercase; color: var(--muted); cursor: pointer; }
+  .bag { grid-column: 12 / 13; font-family: var(--mono); font-size: 12px; text-transform: uppercase; font-weight: 700; cursor: pointer; }
+
+  .meta-bar { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(12, 1fr); border-bottom: 1px solid var(--ink); }
+  .meta-bar > * { padding: 12px 24px; border-right: 1px solid var(--ink); font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .meta-bar > *:last-child { border-right: none; }
+  .meta-bar b { color: var(--accent); font-weight: 700; }
+  .m1 { grid-column: 1 / 4; }
+  .m2 { grid-column: 4 / 7; }
+  .m3 { grid-column: 7 / 10; }
+  .m4 { grid-column: 10 / 13; text-align: right; }
+
+  .hero { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(12, 1fr); border-bottom: 1px solid var(--ink); min-height: 80vh; }
+  .hero-main { grid-column: 1 / 9; padding: 48px 24px 40px; border-right: 1px solid var(--ink); display: flex; flex-direction: column; justify-content: space-between; }
+  .hero-kicker { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; }
+  .hero-kicker span { display: inline-block; width: 10px; height: 10px; background: var(--accent); border-radius: 50%; margin-right: 8px; vertical-align: middle; }
+  .hero-main h1 { font-size: clamp(72px, 13vw, 200px); line-height: 0.85; letter-spacing: -0.05em; font-weight: 900; margin: 60px 0; }
+  .hero-main h1 span.blue { color: var(--accent); }
+  .hero-main h1 span.line { display: inline-block; width: 0.8em; height: 0.15em; background: var(--ink); vertical-align: middle; margin: 0 0.08em; }
+  .hero-main .foot { display: flex; gap: 24px; align-items: center; font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+
+  .hero-side { grid-column: 9 / 13; display: flex; flex-direction: column; }
+  .hero-img { flex: 1; background: var(--ink); color: var(--bg); display: flex; align-items: flex-end; padding: 24px; border-bottom: 1px solid var(--ink); position: relative; min-height: 380px; overflow: hidden; }
+  .hero-img::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent 0 20px, rgba(240,239,234,0.04) 20px 21px); }
+  .hero-img-label { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; position: relative; }
+  .hero-img-label b { display: block; font-size: 48px; letter-spacing: -0.03em; color: var(--accent); margin-top: 8px; font-family: var(--sans); font-weight: 900; }
+  .hero-cta { padding: 24px; }
+  .hero-cta p { font-size: 15px; line-height: 1.5; margin-bottom: 24px; }
+  .hero-cta p b { font-weight: 700; }
+  .btn { display: block; padding: 18px 24px; background: var(--ink); color: var(--bg); font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; text-align: center; width: 100%; margin-bottom: 8px; transition: all .15s; }
+  .btn:hover { background: var(--accent); }
+  .btn.invert { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+  .btn.invert:hover { background: var(--ink); color: var(--bg); }
+
+  section { border-bottom: 1px solid var(--ink); }
+  .section-head { padding: 40px 24px; border-bottom: 1px solid var(--ink); display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; align-items: end; }
+  .section-head .idx { grid-column: 1 / 3; font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
+  .section-head .idx b { display: block; font-size: 48px; color: var(--accent); font-weight: 900; font-family: var(--sans); letter-spacing: -0.03em; margin-top: 4px; }
+  .section-head h2 { grid-column: 3 / 11; font-size: clamp(48px, 6vw, 88px); line-height: 0.9; letter-spacing: -0.035em; font-weight: 900; }
+  .section-head .ctas { grid-column: 11 / 13; text-align: right; }
+  .section-head .ctas a { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid var(--ink); padding-bottom: 2px; }
+
+  .products { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .product { border-right: 1px solid var(--ink); padding: 24px; cursor: pointer; transition: background .2s; position: relative; }
+  .product:last-child { border-right: none; }
+  .product:hover { background: var(--ink); color: var(--bg); }
+  .product:hover .pnum { color: var(--accent); }
+  .product .pnum { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px; color: var(--muted); }
+  .product .img { aspect-ratio: 1/1; background: var(--bg-alt); margin-bottom: 20px; position: relative; border: 1px solid var(--ink); }
+  .product:hover .img { border-color: var(--bg); }
+  .product .img::before, .product .img::after { content: ""; position: absolute; background: var(--ink); transition: background .2s; }
+  .product:hover .img::before, .product:hover .img::after { background: var(--bg); }
+  .product .img::before { top: 50%; left: 12%; right: 12%; height: 1px; transform: rotate(-12deg); }
+  .product .img::after { top: 50%; left: 12%; right: 12%; height: 1px; transform: rotate(12deg); }
+  .product .name { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 6px; line-height: 1.15; }
+  .product .desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 16px; }
+  .product:hover .desc { color: rgba(240,239,234,0.6); }
+  .product .row { display: flex; justify-content: space-between; align-items: center; padding-top: 16px; border-top: 1px solid var(--ink); }
+  .product:hover .row { border-color: rgba(240,239,234,0.2); }
+  .product .price { font-family: var(--mono); font-size: 14px; font-weight: 700; }
+  .product .add { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
+
+  .big-quote { padding: 120px 24px; text-align: center; border-bottom: 1px solid var(--ink); background: var(--bg); }
+  .big-quote blockquote { font-size: clamp(40px, 6vw, 88px); line-height: 0.95; letter-spacing: -0.035em; font-weight: 900; max-width: 1200px; margin: 0 auto; }
+  .big-quote blockquote span { color: var(--accent); }
+  .big-quote cite { display: block; margin-top: 32px; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-style: normal; }
+
+  .usp { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--ink); }
+  .usp-item { padding: 40px 24px; border-right: 1px solid var(--ink); }
+  .usp-item:last-child { border-right: none; }
+  .usp-item .n { font-family: var(--mono); font-size: 56px; font-weight: 900; letter-spacing: -0.04em; line-height: 1; color: var(--accent); margin-bottom: 20px; }
+  .usp-item h4 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; }
+  .usp-item p { font-size: 13px; line-height: 1.6; color: var(--muted); }
+
+  footer { background: var(--ink); color: var(--bg); }
+  footer .top { padding: 60px 24px; border-bottom: 1px solid rgba(240,239,234,0.15); display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr; gap: 40px; }
+  footer h5 { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 20px; }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 10px; }
+  footer a { font-size: 14px; opacity: .8; transition: color .15s; }
+  footer a:hover { color: var(--accent); opacity: 1; }
+  footer .brand-big { font-size: clamp(60px, 10vw, 140px); line-height: 0.85; font-weight: 900; letter-spacing: -0.05em; padding: 40px 24px; border-bottom: 1px solid rgba(240,239,234,0.15); }
+  footer .brand-big span { color: var(--accent); }
+  .copy { padding: 16px 24px; font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; opacity: .6; display: flex; justify-content: space-between; }
+
+  @media (max-width: 900px) {
+    header > * { padding: 14px 16px; }
+    nav, .search { display: none; }
+    .logo { grid-column: 1 / 10; border-right: none; }
+    .bag { grid-column: 10 / 13; }
+    .meta-bar > * { padding: 10px 16px; font-size: 10px; }
+    .m1 { grid-column: 1 / 7; }
+    .m4 { grid-column: 7 / 13; }
+    .m2, .m3 { display: none; }
+    .hero-main { grid-column: 1 / 13; border-right: none; border-bottom: 1px solid var(--ink); padding: 32px 16px; }
+    .hero-side { grid-column: 1 / 13; }
+    .hero-img { min-height: 280px; }
+    .products { grid-template-columns: 1fr 1fr; }
+    .products .product:nth-child(2n) { border-right: none; }
+    .products .product:nth-child(1), .products .product:nth-child(2) { border-bottom: 1px solid var(--ink); }
+    .usp { grid-template-columns: 1fr 1fr; }
+    .usp-item:nth-child(2n) { border-right: none; }
+    .usp-item:nth-child(1), .usp-item:nth-child(2) { border-bottom: 1px solid var(--ink); }
+    .section-head { gap: 16px; }
+    .section-head .idx { grid-column: 1 / -1; }
+    .section-head h2 { grid-column: 1 / -1; }
+    .section-head .ctas { grid-column: 1 / -1; text-align: left; }
+    footer .top { grid-template-columns: 1fr 1fr; gap: 32px; padding: 32px 16px; }
+    footer .top > *:first-child { grid-column: 1 / -1; }
+    .big-quote { padding: 60px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="backbar"><a href="./index.html">← BACK</a><span>STYLE 04B / BRUTALIST SWISS</span></div>
+
+<div class="grid-container">
+  <header>
+    <div class="logo">STUDIO/027</div>
+    <nav>
+      <ul>
+        <li><a href="#">Shop</a></li>
+        <li><a href="#">New</a></li>
+        <li><a href="#">Archive</a></li>
+        <li><a href="#">Index</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="search">[ Search ]</div>
+    <div class="bag">Bag(0)</div>
+  </header>
+
+  <div class="meta-bar">
+    <div class="m1">Vol. <b>027</b> — Spring / Summer 26</div>
+    <div class="m2"><b>●</b> Now shipping worldwide</div>
+    <div class="m3">Free returns within 30 days</div>
+    <div class="m4">13 / 05 / 2026, 14:32 UTC</div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-main">
+      <div class="hero-kicker"><span></span>Issue 027 / Cover</div>
+      <h1>OBJECTS<br>WITHOUT<br><span class="blue">ADJECTIVES</span><span class="line"></span></h1>
+      <div class="foot">
+        <span>001 / 012 pieces</span>
+        <span>—</span>
+        <span>Photographed in Basel</span>
+      </div>
+    </div>
+    <div class="hero-side">
+      <div class="hero-img">
+        <div class="hero-img-label">Cover <b>01</b></div>
+      </div>
+      <div class="hero-cta">
+        <p><b>No storytelling. No mood. No mission statement.</b> Just twelve things we believe in, shot honestly.</p>
+        <a href="#" class="btn">Shop Volume 027 →</a>
+        <a href="#" class="btn invert">Download PDF lookbook</a>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-head">
+      <div class="idx">Section<br><b>02</b></div>
+      <h2>The index.</h2>
+      <div class="ctas"><a href="#">All 012 →</a></div>
+    </div>
+    <div class="products">
+      <div class="product">
+        <div class="pnum">027-001 / Textile</div>
+        <div class="img"></div>
+        <div class="name">Wool Overshirt</div>
+        <div class="desc">Undyed. Unbranded. Unbothered.</div>
+        <div class="row"><span class="price">¥ 1,680</span><span class="add">Add →</span></div>
+      </div>
+      <div class="product">
+        <div class="pnum">027-002 / Leather</div>
+        <div class="img"></div>
+        <div class="name">Document Case</div>
+        <div class="desc">One pocket. That's it.</div>
+        <div class="row"><span class="price">¥ 2,280</span><span class="add">Add →</span></div>
+      </div>
+      <div class="product">
+        <div class="pnum">027-003 / Object</div>
+        <div class="img"></div>
+        <div class="name">Desk Lamp 001</div>
+        <div class="desc">Aluminium, one switch, no app.</div>
+        <div class="row"><span class="price">¥ 880</span><span class="add">Add →</span></div>
+      </div>
+      <div class="product">
+        <div class="pnum">027-004 / Paper</div>
+        <div class="img"></div>
+        <div class="name">A5 Notebook</div>
+        <div class="desc">Grid, 128 pages, no logo.</div>
+        <div class="row"><span class="price">¥ 68</span><span class="add">Add →</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="big-quote">
+    <blockquote>"The more we add, the less is <span>said.</span>"</blockquote>
+    <cite>— Studio Manifesto, 2024</cite>
+  </section>
+
+  <section class="usp">
+    <div class="usp-item">
+      <div class="n">01</div>
+      <h4>Shipped in 24h</h4>
+      <p>From our warehouse in Basel to your door, tracked at every step.</p>
+    </div>
+    <div class="usp-item">
+      <div class="n">02</div>
+      <h4>Return anything</h4>
+      <p>30 days. We'll pay the shipping. We'll refund fully.</p>
+    </div>
+    <div class="usp-item">
+      <div class="n">03</div>
+      <h4>Repaired for life</h4>
+      <p>Break it honestly, we'll fix it for cost. Forever.</p>
+    </div>
+    <div class="usp-item">
+      <div class="n">04</div>
+      <h4>Answered by a human</h4>
+      <p>One inbox. Three people. No chatbots, no scripts.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="brand-big">STUDIO<br>027<span>.</span></div>
+    <div class="top">
+      <div>
+        <h5>— Studio</h5>
+        <p style="font-size: 14px; line-height: 1.7; opacity: .8;">An independent studio making twelve objects a year, since 2024. Based in Basel. Shipping everywhere.</p>
+      </div>
+      <div><h5>— Shop</h5><ul><li><a href="#">New</a></li><li><a href="#">Archive</a></li><li><a href="#">Sale</a></li><li><a href="#">Gift</a></li></ul></div>
+      <div><h5>— Studio</h5><ul><li><a href="#">About</a></li><li><a href="#">Manifesto</a></li><li><a href="#">Press</a></li></ul></div>
+      <div><h5>— Help</h5><ul><li><a href="#">Ship</a></li><li><a href="#">Return</a></li><li><a href="#">Repair</a></li><li><a href="#">FAQ</a></li></ul></div>
+      <div><h5>— Follow</h5><ul><li><a href="#">Instagram</a></li><li><a href="#">Journal</a></li><li><a href="#">Email</a></li></ul></div>
+    </div>
+    <div class="copy">
+      <span>© 2026 STUDIO/027 · Basel, CH</span>
+      <span>Typeset in Inter &amp; JetBrains Mono</span>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>

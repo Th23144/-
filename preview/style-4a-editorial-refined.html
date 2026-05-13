@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style 04A · Editorial Refined 高级杂志</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f1e8;
+    --bg-alt: #ebe5d4;
+    --ink: #1a1410;
+    --muted: #6b5f52;
+    --accent: #7a2828;
+    --accent-light: #b14040;
+    --line: #1a1410;
+    --display: "Playfair Display", "Noto Serif SC", Georgia, serif;
+    --sans: "Inter", -apple-system, "PingFang SC", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+
+  .backbar { background: var(--ink); color: var(--bg); padding: 10px 32px; font-family: var(--mono); font-size: 12px; display:flex; justify-content:space-between; }
+  .backbar a { color: var(--accent-light); }
+
+  header { padding: 28px 48px; display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--ink); position: sticky; top: 0; background: var(--bg); z-index: 10; }
+  .logo { font-family: var(--display); font-size: 34px; font-weight: 900; letter-spacing: -0.03em; }
+  .logo i { font-style: italic; font-weight: 400; color: var(--accent); }
+  nav ul { list-style: none; display: flex; gap: 32px; align-items: baseline; }
+  nav a { font-size: 14px; transition: color .2s; position: relative; }
+  nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 1px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
+  nav a:hover::after { transform: scaleX(1); }
+  .icons { display: flex; gap: 24px; font-size: 13px; font-family: var(--mono); }
+  .icons span { cursor: pointer; }
+
+  .issue-strip { padding: 16px 48px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid var(--ink); }
+  .issue-strip b { color: var(--accent); }
+
+  .hero { padding: 80px 48px 100px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 80px; align-items: flex-end; border-bottom: 1px solid var(--ink); position: relative; }
+  .hero .kicker { font-family: var(--mono); font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 28px; color: var(--accent); }
+  .hero h1 { font-family: var(--display); font-size: clamp(72px, 11vw, 168px); line-height: 0.92; letter-spacing: -0.035em; font-weight: 900; }
+  .hero h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
+  .hero h1 u { text-decoration: none; border-bottom: 6px solid var(--accent); padding-bottom: 8px; }
+  .hero-right { display: flex; flex-direction: column; gap: 28px; }
+  .hero-img { aspect-ratio: 4/5; background: linear-gradient(160deg, #d9cfbd 0%, #8a7a66 100%); position: relative; overflow: hidden; }
+  .hero-img::after { content: "Issue 027"; position: absolute; bottom: 20px; left: 20px; font-family: var(--display); font-style: italic; font-size: 22px; color: var(--bg); }
+  .hero-img::before { content: ""; position: absolute; top: 20px; right: 20px; width: 60px; height: 60px; border: 1px solid var(--bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .lead { font-family: var(--display); font-style: italic; font-size: 20px; line-height: 1.5; color: var(--muted); font-weight: 400; max-width: 420px; }
+  .lead::first-letter { font-size: 56px; float: left; line-height: 0.85; padding: 6px 10px 0 0; color: var(--accent); font-weight: 900; font-style: normal; }
+  .btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; background: var(--ink); color: var(--bg); font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500; transition: all .25s; }
+  .btn:hover { background: var(--accent); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+  .btn.ghost:hover { background: var(--ink); color: var(--bg); }
+
+  section { padding: 100px 48px; border-bottom: 1px solid var(--ink); }
+  .section-head { margin-bottom: 72px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; }
+  .section-head .num { font-family: var(--mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .section-head .num span { color: var(--accent); }
+  .section-head h2 { font-family: var(--display); font-size: clamp(48px, 7vw, 96px); line-height: 0.95; letter-spacing: -0.025em; font-weight: 900; }
+  .section-head h2 em { font-style: italic; font-weight: 400; color: var(--accent); }
+
+  .products { display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px; }
+  .product { cursor: pointer; }
+  .product .img-wrap { aspect-ratio: 3/4; margin-bottom: 20px; overflow: hidden; position: relative; transition: transform .5s ease; }
+  .product:hover .img-wrap { transform: scale(0.98); }
+  .product .img-wrap::after { content: ""; position: absolute; inset: 0; border: 1px solid rgba(26,20,16,0.1); }
+  .product .p1 { background: linear-gradient(160deg,#d9cfbd,#a89681); }
+  .product .p2 { background: linear-gradient(160deg,#c5a68a,#7a5a45); }
+  .product .p3 { background: linear-gradient(160deg,#d4c4b0,#8a7560); }
+  .product .p4 { background: linear-gradient(160deg,#e8d8c0,#b89b7a); }
+  .product .num { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .product .name { font-family: var(--display); font-size: 22px; font-weight: 400; margin-bottom: 4px; line-height: 1.1; }
+  .product .name em { font-style: italic; color: var(--accent); }
+  .product .price { font-family: var(--mono); font-size: 14px; }
+
+  .spread { display: grid; grid-template-columns: 1fr 1fr; gap: 0; min-height: 560px; }
+  .spread-img { background: var(--ink); color: var(--accent); font-family: var(--display); font-style: italic; font-size: clamp(64px, 10vw, 160px); font-weight: 400; display: flex; align-items: center; justify-content: center; padding: 40px; }
+  .spread-text { padding: 64px 48px; background: var(--accent); color: var(--bg); display: flex; flex-direction: column; justify-content: space-between; }
+  .spread-text .kicker { font-family: var(--mono); font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 24px; opacity: .9; }
+  .spread-text h3 { font-family: var(--display); font-size: clamp(40px, 5vw, 68px); line-height: 1.05; font-weight: 400; margin-bottom: 28px; }
+  .spread-text h3 em { font-style: italic; }
+  .spread-text p { font-size: 16px; line-height: 1.75; opacity: .9; max-width: 420px; }
+
+  .usp-row { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .usp-item { padding: 48px 32px; border-right: 1px solid var(--ink); }
+  .usp-item:last-child { border-right: none; }
+  .usp-item .num { font-family: var(--mono); font-size: 12px; color: var(--accent); margin-bottom: 20px; letter-spacing: 0.1em; }
+  .usp-item h4 { font-family: var(--display); font-size: 28px; font-weight: 400; margin-bottom: 12px; letter-spacing: -0.01em; line-height: 1.05; }
+  .usp-item h4 em { font-style: italic; color: var(--accent); }
+  .usp-item p { font-size: 14px; line-height: 1.7; color: var(--muted); }
+
+  footer { background: var(--ink); color: var(--bg); padding: 80px 48px 24px; }
+  footer .masthead { font-family: var(--display); font-size: clamp(80px, 14vw, 220px); line-height: 0.85; letter-spacing: -0.04em; font-weight: 900; margin-bottom: 64px; }
+  footer .masthead em { font-style: italic; font-weight: 400; color: var(--accent-light); }
+  .f-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; padding-bottom: 32px; border-bottom: 1px solid #333; }
+  footer h5 { font-family: var(--mono); font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 20px; }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 10px; }
+  footer a { font-size: 14px; opacity: .8; transition: opacity .2s; }
+  footer a:hover { opacity: 1; }
+  footer .subscribe { font-size: 14px; line-height: 1.8; opacity: .8; max-width: 360px; margin-bottom: 20px; }
+  footer .subscribe em { font-style: italic; font-family: var(--display); font-size: 17px; color: var(--bg); opacity: 1; }
+  .copy { padding-top: 24px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; opacity: .55; display: flex; justify-content: space-between; }
+
+  @media (max-width: 900px) {
+    header, .issue-strip, section, footer { padding-left: 20px; padding-right: 20px; }
+    nav { display: none; }
+    .hero { grid-template-columns: 1fr; gap: 48px; padding: 48px 20px; }
+    .section-head { grid-template-columns: 1fr; gap: 20px; }
+    .products { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .spread { grid-template-columns: 1fr; }
+    .spread-text { padding: 40px 24px; }
+    .usp-row { grid-template-columns: 1fr 1fr; }
+    .usp-item { border-bottom: 1px solid var(--ink); }
+    .usp-item:nth-child(2n) { border-right: none; }
+    .usp-item:nth-child(3), .usp-item:nth-child(4) { border-bottom: none; }
+    .f-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  }
+</style>
+</head>
+<body>
+<div class="backbar"><a href="./index.html">← BACK</a><span>STYLE 04A / EDITORIAL REFINED</span></div>
+
+<header>
+  <div class="logo">The <i>Folio</i></div>
+  <nav>
+    <ul>
+      <li><a href="#">Shop</a></li>
+      <li><a href="#">Stories</a></li>
+      <li><a href="#">Archive</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="icons"><span>Search</span><span>Account</span><span>Bag / 0</span></div>
+</header>
+
+<div class="issue-strip">
+  <span>Issue <b>N°027</b> · Spring / Summer 2026</span>
+  <span>Published <b>May 13, 2026</b></span>
+  <span>Free Shipping over $120</span>
+</div>
+
+<section class="hero">
+  <div>
+    <div class="kicker">— Cover Story</div>
+    <h1>A <em>quiet</em><br><u>rebellion</u><br>of taste.</h1>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img"></div>
+    <p class="lead">Twelve pieces. One point of view. For the people who read the footnotes, take the long way home, and never ask what's on trend.</p>
+    <div class="btns">
+      <a href="#" class="btn">Shop Issue 027 →</a>
+      <a href="#" class="btn ghost">Read the essay</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <div>
+      <div class="num">Section <span>02</span> — The Edit</div>
+    </div>
+    <h2>Twelve things<br>worth <em>keeping</em>.</h2>
+  </div>
+  <div class="products">
+    <div class="product">
+      <div class="img-wrap p1"></div>
+      <div class="num">N°01 / Apparel</div>
+      <div class="name">The <em>Slow</em> Coat</div>
+      <div class="price">¥ 2,480</div>
+    </div>
+    <div class="product">
+      <div class="img-wrap p2"></div>
+      <div class="num">N°02 / Leather</div>
+      <div class="name">Field Tote <em>No.3</em></div>
+      <div class="price">¥ 1,680</div>
+    </div>
+    <div class="product">
+      <div class="img-wrap p3"></div>
+      <div class="num">N°03 / Objects</div>
+      <div class="name">Ceramic <em>Carafe</em></div>
+      <div class="price">¥ 580</div>
+    </div>
+    <div class="product">
+      <div class="img-wrap p4"></div>
+      <div class="num">N°04 / Fragrance</div>
+      <div class="name">Eau de <em>Pages</em></div>
+      <div class="price">¥ 880</div>
+    </div>
+  </div>
+</section>
+
+<section style="padding: 0;">
+  <div class="spread">
+    <div class="spread-img">"…"</div>
+    <div class="spread-text">
+      <div>
+        <div class="kicker">— Essay · 4 min read</div>
+        <h3>Against the<br><em>algorithm.</em></h3>
+      </div>
+      <div>
+        <p>We built a shop the way an editor builds an issue — with taste, with time, and with the quiet refusal to chase what's loud. Everything you see has been argued over.</p>
+        <a href="#" class="btn" style="margin-top: 28px; background: var(--bg); color: var(--ink);">Continue reading →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding: 0;">
+  <div class="usp-row">
+    <div class="usp-item">
+      <div class="num">N°01 — Shipping</div>
+      <h4>Wrapped<br>with <em>care</em>.</h4>
+      <p>Every order is hand-packed and leaves our atelier within 24 hours.</p>
+    </div>
+    <div class="usp-item">
+      <div class="num">N°02 — Returns</div>
+      <h4>A generous<br><em>30</em> days.</h4>
+      <p>Changed your mind? We'll pick it up. Refund, no questions.</p>
+    </div>
+    <div class="usp-item">
+      <div class="num">N°03 — Members</div>
+      <h4>First look,<br><em>always</em>.</h4>
+      <p>Join the list. Essays, previews, and the occasional thing not for sale.</p>
+    </div>
+    <div class="usp-item">
+      <div class="num">N°04 — Human</div>
+      <h4>Write to<br>a <em>person</em>.</h4>
+      <p>We answer every email ourselves. Usually within an afternoon.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="masthead">The <em>Folio</em><br>Issue 027.</div>
+  <div class="f-grid">
+    <div>
+      <h5>— Subscribe</h5>
+      <div class="subscribe"><em>One letter a month.</em><br>New drops, essays, and the things we loved this month. No spam, ever.</div>
+      <div style="display: flex; gap: 0; max-width: 360px;">
+        <input placeholder="Your email" style="flex:1; background: transparent; border: 1px solid rgba(255,255,255,0.3); color: var(--bg); padding: 14px 16px; font-family: var(--mono); font-size: 13px;">
+        <button style="background: var(--accent); color: var(--bg); border: none; padding: 14px 24px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer;">Join</button>
+      </div>
+    </div>
+    <div><h5>— Shop</h5><ul><li><a href="#">Apparel</a></li><li><a href="#">Leather</a></li><li><a href="#">Objects</a></li><li><a href="#">Fragrance</a></li></ul></div>
+    <div><h5>— Studio</h5><ul><li><a href="#">About</a></li><li><a href="#">Archive</a></li><li><a href="#">Stockists</a></li><li><a href="#">Press</a></li></ul></div>
+    <div><h5>— Care</h5><ul><li><a href="#">Shipping</a></li><li><a href="#">Returns</a></li><li><a href="#">Repairs</a></li><li><a href="#">Contact</a></li></ul></div>
+  </div>
+  <div class="copy">
+    <span>© 2026 The Folio · Published in limited editions, printed on the internet.</span>
+    <span>ISSN 2026-027</span>
+  </div>
+</footer>
+
+</body>
+</html>
